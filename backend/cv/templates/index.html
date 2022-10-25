@@ -30,24 +30,23 @@ JHEK
 {%endfor%}
 <h4>{{headers.ED.is}}</h4>	
 {%for e in education%}
-    <div class="row item">
-        <div class="one columns">
-            <span class="dates">
-                <p>{{e.item.leave|date:"m/Y"}}</p>
-                <p>{{e.item.start|date:"m/Y"}}</p>
-            </span>
-        </div>
-        <div class="eleven columns">
-            <h5>{{e.item.title_is}}</h5>
-            <h6>{{e.item.where_is}}</h6>
-        </div>
+<div class="row item">
+    <div class="one columns">
+        <span class="dates">
+            <p>{{e.item.leave|date:"m/Y"}}</p>
+            <p>{{e.item.start|date:"m/Y"}}</p>
+        </span>
     </div>
-    <h4></h4>
-    <ul>
-    {%for p in e.points%}
-        <li>{{p.text_is}}</li>
-    {%endfor%}
-    </ul>
+    <div class="eleven columns">
+        <h5>{{e.item.title_is}}</h5>
+        <h6>{{e.item.where_is}}</h6>
+        <ul>
+        {%for p in e.points%}
+            <li>{{p.text_is}}</li>
+        {%endfor%}
+        </ul>
+    </div>
+</div>
 {%endfor%}
 <h4>{{headers.SK.is}}</h4>	
 <div class="row">

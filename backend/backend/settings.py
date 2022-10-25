@@ -76,7 +76,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 GRAPHENE = {
-        "SCHEMA":"blog.schema.schema",
+        "SCHEMA":"backend.schema.schema",
 }
 
 # Database
