@@ -71,3 +71,4 @@ class ItemPoint(models.Model):
     item = models.ForeignKey(CVItem, on_delete = models.PROTECT)
     text_is = models.TextField()
     text_en = models.TextField()
+
