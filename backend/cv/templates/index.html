@@ -1,0 +1,86 @@
+{%extends "base.html" %}
+{%block title%}
+JHEK
+{%endblock%}
+{%block content%}
+{% csrf_token %}
+{%for p in person%}
+	<h2>{{p.name}}</h2>
+    <h5>{{p.email}} {{p.address}} {{p.city}}</h5>
+{%endfor%}
+<h4>{{headers.JO.is}}</h4>		
+{%for j in jobs%}
+<div class="row item">
+    <div class="one columns">
+        <span class="dates">
+            <p>{{j.item.leave|date:"m/Y"}}</p>
+            <p>{{j.item.start|date:"m/Y"}}</p>
+        </span>
+    </div>
+    <div class="eleven columns">
+        <h5>{{j.item.title_is}}</h5>
+        <h6>{{j.item.where_is}}</h6>
+        <ul>
+        {%for p in j.points%}
+            <li>{{p.text_is}}</li>
+        {%endfor%}
+        </ul>
+    </div>
+</div>
+{%endfor%}
+<h4>{{headers.ED.is}}</h4>	
+{%for e in education%}
+    <div class="row item">
+        <div class="one columns">
+            <span class="dates">
+                <p>{{e.item.leave|date:"m/Y"}}</p>
+                <p>{{e.item.start|date:"m/Y"}}</p>
+            </span>
+        </div>
+        <div class="eleven columns">
+            <h5>{{e.item.title_is}}</h5>
+            <h6>{{e.item.where_is}}</h6>
+        </div>
+    </div>
+    <h4></h4>
+    <ul>
+    {%for p in e.points%}
+        <li>{{p.text_is}}</li>
+    {%endfor%}
+    </ul>
+{%endfor%}
+<h4>{{headers.SK.is}}</h4>	
+<div class="row">
+{%for s in skills%}
+    <div class="four columns">
+        <h6>
+            {{s.skill_name_is}}
+            <div class="skill">
+                <div class="skill-level" style="width:{{s.skill_level}}%"><div class="skill-fill"></div></div>
+            </div> 
+        </h6>
+    </div>
+{%endfor%}
+</div>
+<h4>{{headers.SE.is}}</h4>
+{%for s in seminars%}
+    <div class="row item">
+        <div class="one columns">
+            <span class="dates">
+                <p>{{s.item.leave|date:"m/Y"}}</p>
+                <p>{{s.item.start|date:"m/Y"}}</p>
+            </span>
+        </div>
+        <div class="eleven columns">
+            <h5>{{s.item.title_is}}</h5>
+            <h6>{{s.item.where_is}}</h6>
+        </div>
+    </div>
+    <h4></h4>
+    <ul>
+    {%for p in s.points%}
+        <li>{{p.text_is}}</li>
+    {%endfor%}
+    </ul>
+{%endfor%}
+{%endblock%}

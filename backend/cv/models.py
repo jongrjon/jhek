@@ -14,11 +14,13 @@ class Person(models.Model):
     name = models.CharField(max_length = 80)
     kt = models.CharField(max_length = 10, unique = True)
     phone = models.CharField(max_length = 15, null = True, blank = True)
-    email = models.CharField(max_length = 40, null = True, blank = True)
+    email = models.CharField(max_length = 50, null = True, blank = True)
     address = models.CharField(max_length = 50, null = True, blank = True)
     city = models.CharField(max_length = 50, null = True, blank = True)
-    intro = models.TextField()
-    hobbies = models.TextField()
+    intro_is = models.TextField()
+    intro_en = models.TextField()
+    hobbies_is = models.TextField()
+    hobbies_en = models.TextField()
 
     def __repr__(self):
         return str(self)
@@ -28,10 +30,10 @@ class Person(models.Model):
 
 class CVItem(models.Model):
     item_type = models.CharField(max_length = 2, choices = TYPE)
-    title_is = models.CharField(max_length = 30)
-    title_en = models.CharField(max_length = 30)
-    where_is = models.CharField(max_length = 30)
-    where_en = models.CharField(max_length = 30)
+    title_is = models.CharField(max_length = 50)
+    title_en = models.CharField(max_length = 50)
+    where_is = models.CharField(max_length = 50)
+    where_en = models.CharField(max_length = 50)
     start = models.DateTimeField()
     leave = models.DateTimeField(null = True, blank = True)
 
@@ -42,8 +44,8 @@ class CVItem(models.Model):
         return f'{self.title_en}'
 
 class Skill(models.Model):
-    skill_name_is = models.CharField(max_length = 15)
-    skill_name_en = models.CharField(max_length = 15)
+    skill_name_is = models.CharField(max_length = 30)
+    skill_name_en = models.CharField(max_length = 30)
     skill_level = models.IntegerField(validators = [MaxValueValidator(5), MinValueValidator(1)], default = 3)
 
     def __repr__(self):
@@ -54,11 +56,11 @@ class Skill(models.Model):
 
 class Reccommendor(models.Model):
     name = models.CharField(max_length = 80)
-    workplace_is = models.CharField(max_length = 30)
-    workplace_en = models.CharField(max_length = 30)
-    title_is = models.CharField(max_length = 20)
-    title_en = models.CharField(max_length = 20)
-    email = models.CharField(max_length = 40)
+    workplace_is = models.CharField(max_length = 50)
+    workplace_en = models.CharField(max_length = 50)
+    title_is = models.CharField(max_length = 50)
+    title_en = models.CharField(max_length = 50)
+    email = models.CharField(max_length = 50)
     phone = models.CharField(max_length = 15)
 
     def __repr__(self):
@@ -71,3 +73,9 @@ class ItemPoint(models.Model):
     item = models.ForeignKey(CVItem, on_delete = models.PROTECT)
     text_is = models.TextField()
     text_en = models.TextField()
+
+    def __repr__(self):
+        return str(self)
+
+    def __str__(self):
+        return f'{self.item} - {self.text_en}'

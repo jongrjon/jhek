@@ -1,0 +1,35 @@
+.item h5, h6,p{
+    margin-bottom:0;
+    line-height: 1;
+}
+
+.item li{
+    margin-bottom: 0;
+}
+
+.dates{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    padding-top:0.5rem;
+}
+.skill{
+    background-color: rgb(221, 221, 221);
+    border-radius:1rem;
+}
+.skill-level{
+    height:1rem;
+    border-radius:1rem;
+}
+.skill-fill{
+    height:1rem;
+    background-color: olivedrab;
+    animation-name: example;
+    animation-duration: 4s;
+    border-radius:1rem;
+}
+
+@keyframes example {
+    from {width:0;}
+  to {width: 100%;}
+}
