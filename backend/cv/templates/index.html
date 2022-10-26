@@ -5,8 +5,13 @@ JHEK
 {%block content%}
 {% csrf_token %}
 {%for p in person%}
-	<h2>{{p.name}}</h2>
-    <h5>{{p.email}} {{p.address}} {{p.city}}</h5>
+	<h1>{{p.name}}</h1>
+    <div class="row item">
+        <h6><i class="fa-solid fa-fingerprint"></i> {{p.kt}} <a href="mailto:{{p.email}}"><i class="fa-regular fa-envelope"></i> {{p.email}}</a> <a href="tel:{{p.phone}}"><i class="fa-solid fa-phone"></i>  {{p.phone}}</a> <i class="fa-solid fa-house-user"></i> {{p.address}}, {{p.city}}</h6>
+    </div>
+    <div class="row item">
+        <h5>{{p.intro_is}}</h5>
+    </div>
 {%endfor%}
 <h4>{{headers.JO.is}}</h4>		
 {%for j in jobs%}
@@ -49,8 +54,11 @@ JHEK
 </div>
 {%endfor%}
 <h4>{{headers.SK.is}}</h4>	
-<div class="row">
+
 {%for s in skills%}
+{% if forloop.first%}
+<div class="row item">
+{%endif%}
     <div class="four columns">
         <h6>
             {{s.skill_name_is}}
@@ -59,8 +67,13 @@ JHEK
             </div> 
         </h6>
     </div>
-{%endfor%}
+{%if forloop.counter|divisibleby:"3"%}
 </div>
+<div class="row item">
+{%elif forloop.last%}
+</div>
+{%endif%}
+{%endfor%}
 <h4>{{headers.SE.is}}</h4>
 {%for s in seminars%}
     <div class="row item">
@@ -75,11 +88,24 @@ JHEK
             <h6>{{s.item.where_is}}</h6>
         </div>
     </div>
-    <h4></h4>
-    <ul>
-    {%for p in s.points%}
-        <li>{{p.text_is}}</li>
-    {%endfor%}
-    </ul>
+{%endfor%}
+<h4>{{headers.RE.is}}</h4>
+{%for r in reccommendors%}
+    <div class="row item">
+        <div class="five columns">
+            <h5>{{r.name}}</h5>
+            <h6>{{r.title_is}} - {{r.workplace_is}}</h6>
+        </div>
+        <div class="seven columns contact">
+            <h6><a href="mailto:{{r.email}}" title="Send Email to {{r.name}}"><i class="fa-regular fa-envelope"></i> {{r.email}}</a></h6>
+            <h6><a href="tel:{{r.phone}}" title="Call {{r.name}}"><i class="fa-solid fa-phone"></i> {{r.phone}}</a></h6>
+        </div>
+    </div>
+{%endfor%}
+<h4>{{headers.HO.is}}</h4>
+{%for p in person%}
+    <div class="row item">
+        {{p.hobbies_is|linebreaks}}
+    </div>
 {%endfor%}
 {%endblock%}
