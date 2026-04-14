@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "ALLOWED_HOSTS=$ALLOWED_HOSTS"
+echo "RENDER_EXTERNAL_HOSTNAME=$RENDER_EXTERNAL_HOSTNAME"
 echo "Running migrations..."
 python manage.py migrate --noinput
 
