@@ -20,9 +20,9 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: jhek.onrender.com
+        value: jhek.is,www.jhek.is,jhek.onrender.com
       - key: CSRF_TRUSTED_ORIGINS
-        value: https://jhek.onrender.com
+        value: https://jhek.is,https://www.jhek.is,https://jhek.onrender.com
       - key: CV_DEFAULT_LANGUAGE
         value: is
       - key: DJANGO_SUPERUSER_USERNAME
