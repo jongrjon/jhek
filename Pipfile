@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "<5.1,>=4.2"
+django-environ = "<1.0,>=0.11"
+weasyprint = "<66,>=60"
+gunicorn = "*"
+whitenoise = "*"
+psycopg2-binary = "<3,>=2.9"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+
+[scripts]
+manage = "python backend/manage.py"
+runserver = "python backend/manage.py runserver"
+migrate = "python backend/manage.py migrate"
+makemigrations = "python backend/manage.py makemigrations"
+check = "python backend/manage.py check"
+test = "bash -c 'cd backend && python manage.py test core blog cv'"
+shell = "python backend/manage.py shell"

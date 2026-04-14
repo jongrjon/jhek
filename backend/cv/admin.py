@@ -1,66 +1,43 @@
 from django.contrib import admin
 
-# Register your models here
+from .models import CVItem, ItemPoint, Person, Recommender, Skill
 
-from cv.models import Person, CVItem, Skill, Reccommendor, ItemPoint
+
+class ItemPointInline(admin.TabularInline):
+    model = ItemPoint
+    extra = 1
+    fields = ("text_is", "text_en")
+
 
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
-    model = Person
-    
+    list_display = ("name", "email", "phone", "city")
+    search_fields = ("name", "email")
+    fieldsets = (
+        (None, {"fields": ("name", "kt")}),
+        ("Contact", {"fields": ("email", "phone", "address", "city")}),
+        ("Intro", {"fields": ("intro_is", "intro_en")}),
+        ("Hobbies", {"fields": ("hobbies_is", "hobbies_en")}),
+    )
+
+
 @admin.register(CVItem)
 class CVItemAdmin(admin.ModelAdmin):
-    model = CVItem
+    list_display = ("title_en", "item_type", "where_en", "start", "leave")
+    list_filter = ("item_type",)
+    search_fields = ("title_is", "title_en", "where_is", "where_en")
+    date_hierarchy = "start"
+    inlines = [ItemPointInline]
+
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    model = Skill
+    list_display = ("skill_name_en", "skill_name_is", "skill_level")
+    list_editable = ("skill_level",)
+    search_fields = ("skill_name_is", "skill_name_en")
 
-@admin.register(Reccommendor)
-class ReccommendorAdmin(admin.ModelAdmin):
-    model = Reccommendor
 
-@admin.register(ItemPoint)
-class ItemPointAdmin(admin.ModelAdmin):
-    model = ItemPoint
-
-    
-"""     list_display = (
-        "id",
-        "title",
-        "subtitle",
-        "slug",
-        "publish_date",
-        "published",
-    )
-    
-    list_filter = (
-        "published",
-        "publish_date",
-    )
-    
-    list_editable = (
-        "title",
-        "subtitle",
-        "slug",
-        "publish_date",
-        "published",
-    )
-    
-    search_fields =  (
-        "title",
-        "subtitle",
-        "slug",
-        "body",
-    )
-    
-    prepopulated_fields = {
-        "slug" : (
-            "title",
-            "subtitle",
-        )
-    }
- 
-    date_hierarchy = "publish_date"
-    save_on_top = True
-"""
+@admin.register(Recommender)
+class RecommenderAdmin(admin.ModelAdmin):
+    list_display = ("name", "workplace_en", "title_en", "email")
+    search_fields = ("name", "workplace_en", "email")

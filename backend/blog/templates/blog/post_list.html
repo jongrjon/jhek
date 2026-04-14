@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Notes — jhek{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Notes</h1>
+
+{% if posts %}
+<ul class="blog-list">
+    {% for post in posts %}
+    <li>
+        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+        {% if post.subtitle %}<p class="subtitle">{{ post.subtitle }}</p>{% endif %}
+        <p class="meta">
+            {% if post.publish_date %}{{ post.publish_date|date:"j M Y" }}{% endif %}
+            {% if post.tags.all %}
+                <span class="tags">
+                    {% for tag in post.tags.all %}
+                        <a href="{{ tag.get_absolute_url }}">#{{ tag.name }}</a>
+                    {% endfor %}
+                </span>
+            {% endif %}
+        </p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No notes yet.</p>
+{% endif %}
+{% endblock %}

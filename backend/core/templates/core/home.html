@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}jhek.is{% endblock %}
+
+{% block content %}
+<div class="home">
+    <p class="tagline">{{ tagline }}</p>
+    <p class="intro">{{ intro }}</p>
+
+    {% if links %}
+    <p class="home-links">
+        {% for label, url in links %}{% if not forloop.first %} · {% endif %}<a href="{{ url }}">{{ label }}</a>{% endfor %}
+    </p>
+    {% endif %}
+
+    {% if contact_email %}
+    <p class="contact"><a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+    {% endif %}
+</div>
+{% endblock %}

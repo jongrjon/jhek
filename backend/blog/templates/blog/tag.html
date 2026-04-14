@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}#{{ tag.name }} — jhek{% endblock %}
+
+{% block content %}
+<h1 class="page-title">#{{ tag.name }}</h1>
+
+{% if posts %}
+<ul class="blog-list">
+    {% for post in posts %}
+    <li>
+        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+        <p class="meta">{% if post.publish_date %}{{ post.publish_date|date:"j M Y" }}{% endif %}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No notes with this tag.</p>
+{% endif %}
+{% endblock %}

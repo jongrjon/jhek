@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}CV — jhek{% endblock %}
+
+{% block meta %}<meta name="robots" content="noindex,nofollow">{% endblock %}
+
+{% block content_class %}content--wide{% endblock %}
+
+{% block content %}
+<div class="cv-toolbar">
+    <a href="{% url 'cv:html_lang' 'is' %}">Íslenska</a>
+    <a href="{% url 'cv:html_lang' 'en' %}">English</a>
+    <a href="{{ pdf_url }}">PDF</a>
+</div>
+
+{% include "cv/_cv_body.html" %}
+{% endblock %}

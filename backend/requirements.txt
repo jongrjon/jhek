@@ -1,3 +1,6 @@
-Django  == 3.2.8
-graphene-django == 2.14.0
-django-cors-headers==3.6.0
+Django>=4.2,<5.1
+django-environ>=0.11,<1.0
+WeasyPrint>=60,<66
+gunicorn>=21,<23
+whitenoise>=6.5,<7
+psycopg2-binary>=2.9,<3

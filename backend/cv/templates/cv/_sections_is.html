@@ -1,0 +1,90 @@
+{% if person %}
+<h1>{{ person.name }}</h1>
+<div class="cv-contact">
+    {% if person.kt %}<span>{{ person.kt }}</span>{% endif %}
+    {% if person.email %}<span><a href="mailto:{{ person.email }}">{{ person.email }}</a></span>{% endif %}
+    {% if person.phone %}<span><a href="tel:{{ person.phone }}">{{ person.phone }}</a></span>{% endif %}
+    {% if person.address or person.city %}<span>{{ person.address }}{% if person.address and person.city %}, {% endif %}{{ person.city }}</span>{% endif %}
+</div>
+{% if person.intro_is %}
+<div class="cv-intro">{{ person.intro_is|linebreaks }}</div>
+{% endif %}
+{% endif %}
+
+<h4 class="cv-section-heading">Starfsreynsla</h4>
+{% for j in jobs %}
+<div class="cv-entry">
+    <div class="cv-dates">
+        {{ j.leave|date:"m/Y"|default:"—" }}<br>
+        {{ j.start|date:"m/Y" }}
+    </div>
+    <div class="cv-entry-body">
+        <h5>{{ j.title_is }}</h5>
+        <h6>{{ j.where_is }}</h6>
+        {% if j.points.all %}<ul>{% for p in j.points.all %}<li>{{ p.text_is }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<div class="cv-section">
+<h4 class="cv-section-heading">Menntun</h4>
+{% for e in education %}
+<div class="cv-entry">
+    <div class="cv-dates">
+        {{ e.leave|date:"m/Y"|default:"—" }}<br>
+        {{ e.start|date:"m/Y" }}
+    </div>
+    <div class="cv-entry-body">
+        <h5>{{ e.title_is }}</h5>
+        <h6>{{ e.where_is }}</h6>
+        {% if e.points.all %}<ul>{% for p in e.points.all %}<li>{{ p.text_is }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+</div>
+{% endfor %}
+</div>
+
+<div class="cv-section">
+<h4 class="cv-section-heading">Kunnátta</h4>
+<ul class="cv-skills">
+    {% for s in skills %}<li>{{ s.skill_name_is }} <span class="cv-dots">{% for i in "12345" %}{% if forloop.counter <= s.skill_level %}<span class="dot-filled"></span>{% else %}<span class="dot-empty"></span>{% endif %}{% endfor %}</span></li>{% endfor %}
+</ul>
+</div>
+
+<div class="cv-section">
+<h4 class="cv-section-heading">Námskeið</h4>
+{% for s in seminars %}
+<div class="cv-entry">
+    <div class="cv-dates">
+        {{ s.leave|date:"m/Y"|default:"—" }}<br>
+        {{ s.start|date:"m/Y" }}
+    </div>
+    <div class="cv-entry-body">
+        <h5>{{ s.title_is }}</h5>
+        <h6>{{ s.where_is }}</h6>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+<div class="cv-section">
+<h4 class="cv-section-heading">Meðmælendur</h4>
+{% for r in recommenders %}
+<div class="cv-recommender">
+    <div>
+        <h5>{{ r.name }}</h5>
+        <h6>{{ r.title_is }} — {{ r.workplace_is }}</h6>
+    </div>
+    <div class="cv-rec-contact">
+        {% if r.email %}<a href="mailto:{{ r.email }}">{{ r.email }}</a>{% endif %}
+        {% if r.phone %}<a href="tel:{{ r.phone }}">{{ r.phone }}</a>{% endif %}
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% if person and person.hobbies_is %}
+<div class="cv-section">
+<h4 class="cv-section-heading">Áhugamál og félagsstörf</h4>
+<div class="cv-intro">{{ person.hobbies_is|linebreaks }}</div>
+</div>
+{% endif %}

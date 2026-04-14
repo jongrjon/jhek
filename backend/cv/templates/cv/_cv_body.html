@@ -1,0 +1,10 @@
+{% comment %}
+Shared CV body. Included by both cv.html (on-screen) and cv_pdf.html (print).
+Expects: lang, is_is, person, jobs, education, seminars, skills, recommenders.
+{% endcomment %}
+
+{% if is_is %}
+    {% include "cv/_sections_is.html" %}
+{% else %}
+    {% include "cv/_sections_en.html" %}
+{% endif %}
